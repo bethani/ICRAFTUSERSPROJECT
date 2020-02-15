@@ -1,0 +1,100 @@
+#%RAML 1.0
+title: Sample API
+
+/users:
+  description: 'getting all users'
+  get:
+    description: 'get the list of all users'
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+                [
+                {"id":1,
+                "first":"Ashe",
+                "department":"IT"
+                },
+
+                {"id":2,
+                "first":"Mesfin",
+                "department":"Finance"
+                }
+
+                ]
+      404:
+       body:
+        application/json:
+          example: "bad request, please try again"
+  post:
+    description: "Add a users to the list of user"
+    body:
+      application/json:
+          example: |
+              {
+              "first": "Tade",
+              "last":  "Damtew",
+              "department":  "Salesforce"
+              }
+    responses:
+      200:
+        body:
+          application/json:
+            example: | 
+                {
+                "id":22,
+                "first":"Tade",
+                "last":"Damtew",
+                "department":"Salesforce"
+                }      
+      404:
+       body:
+        application/json:
+          example: "sorry can't creat the user, please try later"
+  
+
+  /{id}:
+    get:
+      description: 'get the user by ID'
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                  {
+                  "id":1,
+                  "first":"Ashe",
+                  "department":"IT"
+                  }
+        404:
+          body:
+            application/json:
+              example: "sorry user not found"
+    put:
+      description: "update the user to the list of users"
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                  {
+                  "id":1,
+                  "first":"Ashe",
+                  "last":"Shashe",
+                  "department":"CEO"
+                  }      
+        
+    delete:
+      description: "delete a user to the list of users"
+      responses:
+        200:
+          body:
+            application/json:
+              example: | 
+                    {
+                    "Users Deleted"
+                    }      
+        404:
+          body:
+            application/json:
+              example: "sorry user not found "
